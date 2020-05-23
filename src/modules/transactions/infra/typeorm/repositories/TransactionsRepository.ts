@@ -1,8 +1,8 @@
 import { EntityRepository, Repository } from 'typeorm';
 
-import Transaction from '../models/Transaction';
+import Transaction from '../entities/Transaction';
 
-interface Balance {
+interface IBalance {
   income: number;
   outcome: number;
   total: number;
@@ -10,7 +10,7 @@ interface Balance {
 
 @EntityRepository(Transaction)
 class TransactionsRepository extends Repository<Transaction> {
-  public async getBalance(): Promise<Balance> {
+  public async getBalance(): Promise<IBalance> {
     // TODO
   }
 }

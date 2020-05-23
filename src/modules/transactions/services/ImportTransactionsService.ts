@@ -1,4 +1,4 @@
-import Transaction from '../models/Transaction';
+import Transaction from '../infra/typeorm/entities/Transaction';
 
 class ImportTransactionsService {
   async execute(): Promise<Transaction[]> {
