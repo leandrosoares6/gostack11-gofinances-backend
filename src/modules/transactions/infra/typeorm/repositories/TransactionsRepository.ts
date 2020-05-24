@@ -52,6 +52,24 @@ class TransactionsRepository implements ITransactionsRepository {
 
     return transaction;
   }
+
+  public async find(): Promise<Transaction[]> {
+    return this.ormRepository.find();
+  }
+
+  public async findById(id: string): Promise<Transaction | undefined> {
+    return this.ormRepository.findOne({
+      where: {
+        id,
+      },
+    });
+  }
+
+  public async destroy(id: string): Promise<void> {
+    await this.ormRepository.delete({
+      id,
+    });
+  }
 }
 
 export default TransactionsRepository;
