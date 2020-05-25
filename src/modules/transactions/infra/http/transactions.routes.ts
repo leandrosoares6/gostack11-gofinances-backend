@@ -1,23 +1,27 @@
 import { Router } from 'express';
+import { celebrate, Segments, Joi } from 'celebrate';
 
-// import TransactionsRepository from '../repositories/TransactionsRepository';
-// import CreateTransactionService from '../services/CreateTransactionService';
-// import DeleteTransactionService from '../services/DeleteTransactionService';
-// import ImportTransactionsService from '../services/ImportTransactionsService';
+import TransactionsController from './controllers/TransactionsController';
 
 const transactionsRouter = Router();
+const transactionsController = new TransactionsController();
 
-transactionsRouter.get('/', async (request, response) => {
-  // TODO
-});
+transactionsRouter.get('/', transactionsController.index);
 
-transactionsRouter.post('/', async (request, response) => {
-  // TODO
-});
+transactionsRouter.post(
+  '/',
+  celebrate({
+    [Segments.BODY]: {
+      title: Joi.string().required(),
+      value: Joi.number().required(),
+      type: Joi.string().required(),
+      category: Joi.string().required(),
+    },
+  }),
+  transactionsController.create,
+);
 
-transactionsRouter.delete('/:id', async (request, response) => {
-  // TODO
-});
+transactionsRouter.delete('/:id', transactionsController.destroy);
 
 transactionsRouter.post('/import', async (request, response) => {
   // TODO

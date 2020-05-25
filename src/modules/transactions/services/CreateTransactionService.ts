@@ -29,6 +29,10 @@ class CreateTransactionService {
     type,
     category,
   }: IRequest): Promise<Transaction> {
+    if (!['income', 'outcome'].includes(type)) {
+      throw new AppError('Invalid type.');
+    }
+
     const { income } = await this.transactionsRepository.getBalance();
     if (type === 'outcome' && income < value) {
       throw new AppError('Outcome transaction without a valid balance!');
@@ -38,7 +42,7 @@ class CreateTransactionService {
     const findCategory = await this.categoriesRepository.findByTitle(category);
 
     if (!findCategory) {
-      transactionCategory = await this.categoriesRepository.create(title);
+      transactionCategory = await this.categoriesRepository.create(category);
     } else {
       transactionCategory = findCategory;
     }

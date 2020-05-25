@@ -10,10 +10,10 @@ class CategoriesRepository implements ICategoriesRepository {
     this.ormRepository = getRepository(Category);
   }
 
-  public async findByTitle(category: string): Promise<Category | undefined> {
+  public async findByTitle(title: string): Promise<Category | undefined> {
     const findCategory = await this.ormRepository.findOne({
       where: {
-        title: category,
+        title,
       },
     });
 
