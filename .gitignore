@@ -1,8 +1,8 @@
-.idea/
-.vscode/
-node_modules/
-build/
-temp/
+server/.idea/
+server/.vscode/
+server/node_modules/
+server/build/
+server/temp/
 
-tmp/*
-!tmp/.gitkeep
+server/tmp/*
+server/!tmp/.gitkeep
