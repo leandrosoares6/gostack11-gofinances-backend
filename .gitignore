@@ -1,8 +1,0 @@
-server/.idea/
-server/.vscode/
-server/node_modules/
-server/build/
-server/temp/
-
-server/tmp/*
-server/!tmp/.gitkeep
